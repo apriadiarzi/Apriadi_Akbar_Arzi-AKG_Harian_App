@@ -1,0 +1,53 @@
+STORE "weight" AS NUMBER WITH ANY VALUE
+STORE "height" AS NUMBER WITH ANY VALUE
+STORE "age" AS NUMBER WITH ANY VALUE
+STORE "gender" AS OPTION WITH "pria" OPTION OR "wanita" OPTION
+STORE "exercise_frequency" AS OPTION WITH "very_rarely", "rarely", "enough", "often", "very_often" OPTION
+STORE "calory" AS NUMBER WITH NULL VALUE
+STORE "final_calory" AS NUMBER WITH NULL VALUE
+STORE "protein" AS NUMBER WITH NULL VALUE
+STORE "carbohydrate" AS NUMBER WITH NULL VALUE
+STORE "fat" AS NUMBER WITH NULL VALUE
+
+IF "gender" EQUAL "pria"
+    STORE "calory" WITH (66 + (1.37 * "weight") + (5 * "height") - (6.8 * "age"))
+ELSE IF "gender" EQUAL "wanita"
+    STORE "calory" WITH (655 + (9.6 * "weight") + (1.8 * "height") - (4.7 * "age"))
+ELSE
+    DISPLAY "Mohon pilih gender anda"
+
+IF ("calory")
+    IF "exercise_frequency" EQUAL "very_rarely"
+        STORE "final_calory" WITH "calory" multiplied 1.2
+        STORE "protein" WITH ("final_calory" * (15/100) / 4)
+        STORE "carbohydrate" WITH ("final_calory" * (65/100) / 4)
+        STORE "fat" WITH ("final_calory" * (20/100) / 4)
+        DISPLAY "final_calory", "protein", "carbohydrate", and "fat"
+    ELSE IF "exercise_frequency" EQUAL "rarely"
+        STORE "final_calory" WITH "calory" multiplied 1.375
+        STORE "protein" WITH ("final_calory" * (15/100) / 4)
+        STORE "carbohydrate" WITH ("final_calory" * (65/100) / 4)
+        STORE "fat" WITH ("final_calory" * (20/100) / 4)
+        DISPLAY "final_calory", "protein", "carbohydrate", and "fat"
+    ELSE IF "exercise_frequency" EQUAL "enough"
+        STORE "final_calory" WITH "calory" multiplied 1.55
+        STORE "protein" WITH ("final_calory" * (15/100) / 4)
+        STORE "carbohydrate" WITH ("final_calory" * (65/100) / 4)
+        STORE "fat" WITH ("final_calory" * (20/100) / 4)
+        DISPLAY "final_calory", "protein", "carbohydrate", and "fat"
+    ELSE IF "exercise_frequency" EQUAL "often"
+        STORE "final_calory" WITH "calory" multiplied 1.725
+        STORE "protein" WITH ("final_calory" * (15/100) / 4)
+        STORE "carbohydrate" WITH ("final_calory" * (65/100) / 4)
+        STORE "fat" WITH ("final_calory" * (20/100) / 4)
+        DISPLAY "final_calory", "protein", "carbohydrate", and "fat"
+    ELSE IF "exercise_frequency" EQUAL "very_often"
+        STORE "final_calory" WITH "calory" multiplied 1.9
+        STORE "protein" WITH ("final_calory" * (15/100) / 4)
+        STORE "carbohydrate" WITH ("final_calory" * (65/100) / 4)
+        STORE "fat" WITH ("final_calory" * (20/100) / 4)
+        DISPLAY "final_calory", "protein", "carbohydrate", and "fat"
+    ELSE
+        DISPLAY "Mohon pilih seberapa sering anda berolahraga"
+
+
